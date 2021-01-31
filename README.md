@@ -3,8 +3,8 @@
 # Cấu trúc thư mục:
  * docker 
     * mysql
-        * mysql.conf
-            * mysql.conf
+        * my.conf
+            * my.conf
     * nginx
         * conf.d
             * nginx.conf
@@ -128,5 +128,42 @@ Suýt quyên chúng ta cần phải thêm sửa lại chỗ php service  thành
 
 # và trong docker filde chúng ta thêm 
 ```
+FROM php:7.4-fpm  # sử dụng php 7.4 -> quen chưa
+RUN docker-php-ext-install pdo_mysql  # php cần pdo_mysql để dọc dữ liệu sử dụng PDO object
+```
+
+# ở trong my.conf 
 
 ```
+[ mysqld ] 
+collation-server      = utf8mb4_unicode_ci # khai báo server sử dụng kiểu gì utf8 ....
+character-set-server = utf8mb4
+```
+
+# để kiểm tra đã PDO đã chạy hay chưa chúng ta sẽ vào phpmyadmin tạo một bảng nào đó VD :users.
+# trong file index.php 
+```
+ <? php 
+$connection = new PDO('mysql:host=mysql;dbname=test;charset=utf8', 'root', 'root'); // kêt nối CSDL
+$query      = $connection->query("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'test'"); // chạy query
+$tables     = $query->fetchAll(PDO::FETCH_COLUMN); // format theo colum 
+
+if (empty($tables)) {
+    echo '<p class="center">Chưa có db nào <code>demo</code>.</p>';
+} else {
+    echo '<p class="center">Database <code>demo</code> có các bảng:</p>';
+    echo '<ul class="center">';
+    foreach ($tables as $table) {
+        echo "<li>{$table}</li>";
+    }
+    echo '</ul>';
+}
+```
+
+# chạy lại docker bằng câu lệnh
+
+docker-compose down 
+docker-compose build
+docker-compose up -d 
+
+# ==> kết quả sẽ hiện ra các bảng trong csdl nếu có . 
