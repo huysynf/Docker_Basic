@@ -20,12 +20,16 @@ class Connect
         $this->password = PASSWORD;
         $this->host = HOST;
         $this->database = DB_NAME;
-        $this->connect =  new PDO("mysql:host=$this->host;dbname=$this->database;charset=utf8", $this->userName, $this->password);
+        $this->connect = new PDO(
+            "mysql:host=$this->host;dbname=$this->database;charset=utf8",
+            $this->userName,
+            $this->password
+        );
     }
 
     static public function getInstance()
     {
-        if(!self::$instance) { // If no instance then make one
+        if (!self::$instance) { // If no instance then make one
             self::$instance = new Connect();
         }
         return self::$instance;
@@ -33,14 +37,15 @@ class Connect
 
     public function connectDB()
     {
-      return $this->connect;
+        return $this->connect;
     }
 }
 
-class Database{
+class Database
+{
     protected $connect;
-    protected $sql;
 
+    protected $sql;
 
     public function __construct()
     {
@@ -50,7 +55,7 @@ class Database{
     public function executeSql($sql)
     {
         $this->setSql($sql);
-        $result =$this->connect->prepare('SELECT * from users');
+        $result = $this->connect->prepare('SELECT * from users');
         $result->setFetchMode(PDO::FETCH_OBJ);
         $result->execute();
         return $result->fetchAll(PDO::FETCH_OBJ);;
@@ -61,7 +66,8 @@ class Database{
         return $this->sql;
     }
 
-    public function setSql($sql){
+    public function setSql($sql)
+    {
         return $this->sql = $sql;
     }
 }
