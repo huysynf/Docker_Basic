@@ -3,16 +3,16 @@
 Cấu trúc thư mục:
  
  docker 
-    --mysql
-            ---mysql.conf
-                  ---mysql.conf
-    --nginx
-            ---conf.d
-                  ---nginx.conf
-    --php 
-        --Dockerfile
-    --src
-        --index.php
+    -mysql
+        -mysql.conf
+            -mysql.conf
+    -nginx
+            -conf.d
+                  -nginx.conf
+    -php 
+        -Dockerfile
+    -src
+        -index.php
     .docker-compose.yml
 
 
