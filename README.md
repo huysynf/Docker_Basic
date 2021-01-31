@@ -1,5 +1,5 @@
-# tạo môi trường chạy php bằng docker
-# 1 Môi trường chạy php bao gồm php, nginx, mysql, phpmyadmin(option).
+### tạo môi trường chạy php bằng docker
+### 1 Môi trường chạy php bao gồm php, nginx, mysql, phpmyadmin(option).
 # Cấu trúc thư mục:
  * docker 
     * mysql
@@ -13,7 +13,7 @@
     * src
         * index.php
     * .docker-compose.yml
-# 2 trong file docker-compose.yml sẽ gõ
+### 2 trong file docker-compose.yml sẽ gõ
 ```
 # phiên bản
  version: '3.8'
@@ -39,7 +39,7 @@
       - ./src:/var/www/php # thư mục ở trong máy tính sẽ ánh xạ với thư mục trong docker 
 
 ```
-# 2.1 nội dung trong file nginx.conf
+## 2.1 nội dung trong file nginx.conf
 
 ```
 server {
@@ -59,7 +59,7 @@ server {
 
 ```
 
-# 2.3 nội dung trong file index.php 
+## 2.3 nội dung trong file index.php 
 
 ```
 <?php
@@ -69,7 +69,7 @@ phpinfo();
 
 # => chạy câu lệnh : docker-compose up -d . gõ trên trình duyệ localhost sẽ hiện ra nội dung trong php
 
-# 3. tích hợp mysql  và phpmyadmin
+### 3. tích hợp mysql  và phpmyadmin
 trong file .docker-compose.yml thêm tiếp 
 
 ```
@@ -109,10 +109,10 @@ Suýt quyên chúng ta cần phải thêm sửa lại chỗ php service  thành
     depends_on: # thêm phải chạy mysql trước
       - mysql
 ```
-# 4 vậy là xong rồi đó . chúng ta chạy lệnh docker-compose up -d và vào xem kết quả.
+### 4 vậy là xong rồi đó . chúng ta chạy lệnh docker-compose up -d và vào xem kết quả.
 # chạy localhost:8080 để vào phpmyadmin userName là root còn mật khẩu là biến đã config trong docker-compose.yml
 
-# 5 Ủa như vậy là xong rồi hả? Nếu bạn dùng msqli để kêt nối thì có thể dừng lại tại đây.
+### 5 Ủa như vậy là xong rồi hả? Nếu bạn dùng msqli để kêt nối thì có thể dừng lại tại đây.
 # sử dụng PDO để connect đến db trong code .
 # chúng ta sẽ thay đổi một tý ở service php thành 
 
@@ -162,8 +162,8 @@ if (empty($tables)) {
 
 # chạy lại docker bằng câu lệnh
 
-docker-compose down 
-docker-compose build
-docker-compose up -d 
+# docker-compose down 
+# docker-compose build
+# docker-compose up -d 
 
-# ==> kết quả sẽ hiện ra các bảng trong csdl nếu có . 
+## ==> kết quả sẽ hiện ra các bảng trong csdl nếu có . 
