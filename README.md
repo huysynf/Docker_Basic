@@ -1,7 +1,7 @@
 # tạo môi trường chạy php bằng docker
 # 1 Môi trường chạy php bao gồm php, nginx, mysql, phpmyadmin(option).
 # Cấu trúc thư mục:
- *docker 
+ * docker 
     * mysql
         * mysql.conf
             * mysql.conf
