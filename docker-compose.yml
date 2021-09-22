@@ -6,9 +6,9 @@ services:
   nginx:
     image: nginx:1.17
     ports:
-      - 80:80
+      - 82:80
     volumes:
-      - ./src:/var/www/php:ro
+      - ../php-covi/a2:/var/www/php:ro
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
     depends_on:
       - php
@@ -18,7 +18,7 @@ services:
     build: ./php
     working_dir: /var/www/php
     volumes:
-      - ./src:/var/www/php
+      - ../php-covi/a2:/var/www/php
     depends_on:
       - mysql
 
@@ -37,7 +37,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5
     ports:
-      - 8080:80
+      - 8082:80
     environment:
       PMA_HOST: mysql
     depends_on:
