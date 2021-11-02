@@ -1,13 +1,3 @@
-<?php
-require_once './public/database/mysql_li.php';
-
-function getUser()
-{
-    $sql = "SELECT * from users";
-
-    return queryRaw($sql);
-}
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -104,60 +94,57 @@ function getUser()
                 border-radius: 10px;
                 background-color: azure;
             }
+             .btn{
+                 padding: 10px;
+                 border-radius: 10px;
+                 background-color: rgb(109, 187, 109);
+                 color: white;
+                 border: none;
+             }
+             .btn-create-user__box{
+                 display: flex;
+                 justify-content: center;
+                 margin: 20px 0;
+             }
 
-            .btn {
-                padding: 10px;
-                border-radius: 5px;
-                background-color: rgb(109, 187, 109);
-                color: white;
-                border: none;
-            }
-
-            .btn-create-user__box {
-                display: flex;
-                justify-content: center;
-                margin: 20px 0;
-            }
-
-            .form-user--create {
-                padding: 20px;
-            }
-
-            .form-control {
-                display: flex;
+             .form-user--create{
+                 padding: 20px;
+             }
+             .form-control{
+                 display: flex;
                 width: 100%;
                 margin: 20px;
-            }
+             }
 
-            .form-control label {
-                width: max-content;
-                width: 100px;
-                text-transform: capitalize;
-            }
+             .form-control label{
+                 width: max-content;
+                 width: 100px;
+                 text-transform: capitalize;
+             }
 
-            .form-control .input-text:hover, .form-control .input-text:focus {
-                background-color: lightcyan;
-            }
+             .form-control .input-text:hover, .form-control .input-text:focus{
+                 background-color: lightcyan;
+             }
 
-            .form-control .input-text {
-                height: 20px;
-                width: 80%;
-                outline: unset;
-                border-color: rgb(170, 161, 179);
-                background-color: rgba(170, 170, 170, 0.226);
-                border-radius: 5px;
-                padding: 20px 20px;
-            }
+             .form-control .input-text{
+                 height: 20px;
+                 width: 80%;
+                 outline: unset;
+                 border-color: rgb(170, 161, 179);
+                 background-color: rgba(170, 170, 170, 0.226);
+                 border-radius: 5px;
+                 padding: 20px 20px;
+             }
 
-            .btn-danger {
-                background-color: rgb(199, 21, 74);
+             .btn-danger{
+                 background-color: rgb(199, 21, 74);
+                
+             }
 
-            }
-
-            .btn-warning {
-                background-color: rgb(219, 110, 91);
-            }
-
+             .btn-warning{
+                 background-color: rgb(219, 110, 91);
+             }
+            
         </style>
     </head>
 </head>
@@ -182,14 +169,7 @@ function getUser()
 
 <div class="main">
     <nav class="navbar">
-        <?php if (isset($_SESSION['message'])): ?>
-            <div class="msg">
-                <?php
-                echo $_SESSION['message'];
-                unset($_SESSION['message']);
-                ?>
-            </div>
-        <?php endif ?>
+        nav
     </nav>
 
     <main class="content">
@@ -203,9 +183,9 @@ function getUser()
             <div class="btn-create-user__box">
                 <button class="btn btn-user-create">Add User</button>
             </div>
-            <div>
+            <div> 
                 <div>
-                    <form action="./public/database/mysql_li.php" method="post" class="form-user--create">
+                    <form action="" class="form-user--create">
                         <div class="form-control">
                             <label for="">Name</label>
                             <input class="input-text" type="text" required name="name">
@@ -220,7 +200,7 @@ function getUser()
                         </div>
                         <div class="form-control">
                             <label for="">address</label>
-                            <textarea class="input-text" name="address" cols="10">
+                            <textarea class="input-text"  name="address" cols="10">
                                 dadas
                             </textarea>
                         </div>
@@ -233,7 +213,7 @@ function getUser()
                         </div>
 
                         <div class="form-control">
-                            <button class="btn btn-create" name="create" type="submit">create</button>
+                                <button class="btn btn-create" type="submit">create</button>
                         </div>
                     </form>
                 </div>
@@ -251,9 +231,7 @@ function getUser()
 
                     </tr>
 
-                    <?php while ($row = mysqli_fetch_array(getUser())){ ?>
-
-                             <tr>
+                    <tr>
                         <td>1</td>
                         <td>name</td>
                         <td>email</td>
@@ -266,9 +244,6 @@ function getUser()
 
                         </td>
                     </tr>
-
-                    <?php } ?>
-
                 </table>
 
 
@@ -279,7 +254,7 @@ function getUser()
         <p>@CopyRight by Huyhq</p>
     </footer>
 </div>
-</body>
+    </body>
 
 <script src="public/js/script.js"></script>
 </html>
